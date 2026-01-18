@@ -1,1 +1,33 @@
 # instacart-customer-segmentation
+
+## Project Overview
+โปรเจคนี้มีวัตถุประสงค์เพื่อ วิเคราะห์และแบ่งกลุ่มลูกค้า (Customer Segmentation) จากพฤติกรรมการสั่งซื้อสินค้าออนไลน์ โดยใช้ข้อมูลจาก Instacart Online Grocery Basket Analysis Dataset จาก Kaggle : https://www.kaggle.com/datasets/yasserh/instacart-online-grocery-basket-analysis-dataset?fbclid=IwY2xjawPZnSFleHRuA2FlbQIxMABicmlkETFVZ05WNkk2QU1PaFBUN2ZQc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHnKHnoHmEc0WYZHzB0c-vz-1tSaTQxrQT-N9gCZRwMBTG7OmqPNgJF16o2Ev_aem_myGEXHJ2iU0KLT1JPGefrw
+โดยทีมผู้พัฒนาได้นำข้อมูลการสั่งซื้อย้อนหลังของลูกค้า มาสร้าง Feature ระดับผู้ใช้ (User-level Features) และใช้เทคนิค Unsupervised Machine Learning (K-Means Clustering) เพื่อค้นหารูปแบบพฤติกรรมการซื้อที่แตกต่างกันในกลุ่มลูกค้า
+
+## ผลลัพธ์ของโปรเจคคือ:
+=  กลุ่มลูกค้าที่มีลักษณะพฤติกรรมชัดเจน
+=  การอธิบายลักษณะของแต่ละกลุ่มในเชิงธุรกิจ
+=  Insight ที่สามารถนำไปใช้ต่อยอดด้านการตลาดหรือกลยุทธ์ทางธุรกิจ
+
+## Project Objectives
+-  วิเคราะห์พฤติกรรมการสั่งซื้อของลูกค้า Instacart
+-  สร้างชุดข้อมูลเชิงวิเคราะห์ในระดับลูกค้า (User-level Dataset)
+-  แบ่งกลุ่มลูกค้าด้วยเทคนิค Clustering
+-  อธิบายความแตกต่างของแต่ละกลุ่มในเชิงพฤติกรรมและธุรกิจ
+
+## Dataset Description
+โปรเจคนี้ใช้ข้อมูลจาก Instacart Online Grocery Basket Analysis Dataset
+ซึ่งเป็นชุดข้อมูลพฤติกรรมการสั่งซื้อสินค้าออนไลน์ของผู้ใช้งานจริง
+
+### ไฟล์ข้อมูลที่ใช้
+orders.csv                  ข้อมูลคำสั่งซื้อของผู้ใช้ เช่น เวลา วัน และลำดับการสั่ง
+order_products__prior.csv   รายการสินค้าที่ผู้ใช้เคยสั่งซื้อในอดีต
+products.csv                รายละเอียดสินค้า
+aisles.csv                  หมวดหมู่ย่อยของสินค้า
+departments.csv	            หมวดหมู่หลักของสินค้า
+
+## Team & Collaboration
+โปรเจคนี้พัฒนาโดยทีมจำนวน 3 คน
+นายปภพ สมนอก      663380018-4
+นายวีรภัทร วิเศษสมบัติ  663380025-7
+นายปกรณ์ จำนงค์นารถ  663380216-0	
