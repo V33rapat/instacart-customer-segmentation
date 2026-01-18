@@ -1,4 +1,5 @@
 # instacart-customer-segmentation
+ยินดีต้อนรับสู่ instacart-customer-segmentation!
 
 ## Project Overview
 โปรเจคนี้มีวัตถุประสงค์เพื่อ วิเคราะห์และแบ่งกลุ่มลูกค้า (Customer Segmentation) จากพฤติกรรมการสั่งซื้อสินค้าออนไลน์ โดยใช้ข้อมูลจาก Instacart Online Grocery Basket Analysis Dataset จาก Kaggle โดยทีมผู้พัฒนาได้นำข้อมูลการสั่งซื้อย้อนหลังของลูกค้า มาสร้าง Feature ระดับผู้ใช้ (User-level Features) และใช้เทคนิค Unsupervised Machine Learning (K-Means Clustering) เพื่อค้นหารูปแบบพฤติกรรมการซื้อที่แตกต่างกันในกลุ่มลูกค้า
