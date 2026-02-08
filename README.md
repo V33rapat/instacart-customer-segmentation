@@ -15,6 +15,11 @@
 -  แบ่งกลุ่มลูกค้าด้วยเทคนิค Clustering
 -  อธิบายความแตกต่างของแต่ละกลุ่มในเชิงพฤติกรรมและธุรกิจ
 
+## Project Structure
+- data/                       raw data and merged_data.csv (ignored)
+- src/analysis/data_profile.py data profiling script (feature distributions, missing values, outliers)
+- reports/                    generated outputs (summary CSVs + markdown)
+
 ## Dataset Description
 โปรเจคนี้ใช้ข้อมูลจาก Instacart Online Grocery Basket Analysis Dataset
 ซึ่งเป็นชุดข้อมูลพฤติกรรมการสั่งซื้อสินค้าออนไลน์ของผู้ใช้งานจริง
@@ -29,6 +34,12 @@ products.csv                รายละเอียดสินค้า
 aisles.csv                  หมวดหมู่ย่อยของสินค้า
 
 departments.csv	            หมวดหมู่หลักของสินค้า
+
+## Data Profiling Workflow
+1. ใช้ datapipline.py เพื่อดาวน์โหลดและรวมข้อมูลเป็น data/merged_data.csv
+2. รันสคริปต์โปรไฟล์ข้อมูลเพื่อดูการกระจาย feature, missing values, และ outliers:
+   python src/analysis/data_profile.py
+3. ผลลัพธ์จะอยู่ที่ reports/data_profile/
 
 ## Team & Collaboration
 โปรเจคนี้พัฒนาโดยทีมจำนวน 3 คน
