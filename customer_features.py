@@ -245,7 +245,7 @@ class CustomerSegmentation:
 # ===================== ฟังก์ชั่นช่วยเหลือ =====================
 
 def load_merged_data(filepath='data/preprocessed/processed_data.csv'):
-    """โหลด preprocessed data จากไฟล์"""
+    """โหลด preprocessed data จากไฟล์ (user_id ไม่ถูก scale)"""
     try:
         df = pd.read_csv(filepath)
         print(f"✅ โหลดข้อมูล preprocessed สำเร็จ: {df.shape}")

@@ -80,11 +80,20 @@ def preprocess_merged_data(input_path='data/merged_data.csv',
     
     print(f"   ✅ จัดการ {outlier_count} outliers (clipped)")
     
-    # 4. Standard Scaling
+    # 4. Standard Scaling (ยกเว้น ID columns)
     print("\n[4/5] ทำ Standard Scaling...")
-    scaler = StandardScaler()
-    df[numeric_cols] = scaler.fit_transform(df[numeric_cols])
-    print(f"   ✅ Scaled {len(numeric_cols)} numeric columns")
+    # คอลัมน์ ID ที่ไม่ต้อง scale
+    id_cols = ['user_id', 'order_id', 'product_id']
+    cols_to_scale = [col for col in numeric_cols if col not in id_cols]
+    
+    if len(cols_to_scale) > 0:
+        scaler = StandardScaler()
+        df[cols_to_scale] = scaler.fit_transform(df[cols_to_scale])
+        print(f"   ✅ Scaled {len(cols_to_scale)} feature columns")
+        print(f"   ⏭️  ทำเว้น ID columns: {', '.join([c for c in id_cols if c in df.columns])}")
+    else:
+        scaler = StandardScaler()
+        print(f"   ⏭️  ไม่มีคอลัมน์ที่ต้อง scale")
     
     # 5. บันทึกผลลัพธ์
     print("\n[5/5] บันทึกผลลัพธ์...")
@@ -113,7 +122,7 @@ def preprocess_merged_data(input_path='data/merged_data.csv',
         f.write(f"Preprocessing steps:\n")
         f.write(f"1. Missing Values: {len(missing_cols)} columns handled\n")
         f.write(f"2. Outliers: {outlier_count} values clipped (IQR method)\n")
-        f.write(f"3. Scaling: StandardScaler applied to {len(numeric_cols)} columns\n\n")
+        f.write(f"3. Scaling: StandardScaler applied to feature columns (excluded: user_id, order_id, product_id)\\n\\n")
         f.write(f"Output files:\n")
         f.write(f"- {output_path}\n")
         f.write(f"- {scaler_path}\n")
