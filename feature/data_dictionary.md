@@ -1,6 +1,9 @@
 # Data Dictionary
 
 ## Customer Behavioral Features
+เอกสารนี้อธิบายความหมายของแต่ละ Feature ที่ใช้ในการวิเคราะห์และทำ Clustering ผู้ใช้งาน
+
+This document describes each feature used for customer analysis and clustering.
 
 | Feature               | Type  | Description (English)                             | คำอธิบาย (ภาษาไทย)                              |
 | --------------------- | ----- | ------------------------------------------------- | ----------------------------------------------- |
