@@ -45,16 +45,26 @@ class CustomerSegmentation:
             'product_id': 'frequency_items'
         })
         
-        # เพิ่ม Monetary value (ใช้ product_id จำนวน * ความถี่)
+        # Monetary: จำนวนสินค้าทั้งหมดต่อ user
+        # (คำนวณจาก product_id count เนื่องจาก merged_data ไม่มี price column)
         monetary = self.df.groupby('user_id').agg({
-            'product_id': 'count'  # จำนวนสินค้าทั้งหมด
+            'product_id': 'count',  # จำนวนสินค้าทั้งหมด
+            'order_id': 'nunique'    # จำนวนครั้งที่สั่งซื้อ
         }).rename(columns={
-            'product_id': 'monetary_total'
+            'product_id': 'monetary_total',
+            'order_id': 'num_orders'
         })
         
-        # เพิ่มค่าเฉลี่ย
-        monetary['monetary_avg'] = self.df.groupby('user_id').size() / self.df.groupby('user_id')['order_id'].nunique()
-        monetary['monetary_std'] = 0  # ใช้ 0 เพราะไม่มีราคา
+        # คำนวณจำนวนสินค้าเฉลี่ยต่อ order
+        monetary['monetary_avg'] = monetary['monetary_total'] / monetary['num_orders']
+        
+        # คำนวณ standard deviation ของจำนวนสินค้าต่อ order
+        def calc_items_std(group_df):
+            items_per_order = group_df.groupby('order_id')['product_id'].count()
+            return items_per_order.std() if len(items_per_order) > 1 else 0.0
+        
+        monetary['monetary_std'] = self.df.groupby('user_id').apply(calc_items_std)
+        monetary = monetary.drop('num_orders', axis=1)  # ลบ temporary column
         
         # รวม RFM
         rfm = rfm.join(monetary)
@@ -234,11 +244,11 @@ class CustomerSegmentation:
 
 # ===================== ฟังก์ชั่นช่วยเหลือ =====================
 
-def load_merged_data(filepath='data/merged_data.csv'):
-    """โหลด merged data จากไฟล์"""
+def load_merged_data(filepath='data/preprocessed/processed_data.csv'):
+    """โหลด preprocessed data จากไฟล์"""
     try:
         df = pd.read_csv(filepath)
-        print(f"✅ โหลดข้อมูล สำเร็จ: {df.shape}")
+        print(f"✅ โหลดข้อมูล preprocessed สำเร็จ: {df.shape}")
         return df
     except FileNotFoundError:
         print(f"❌ ไม่พบไฟล์: {filepath}")
