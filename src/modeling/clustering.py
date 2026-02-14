@@ -94,4 +94,12 @@ if __name__ == "__main__":
     df_grouped = df_success.groupby('cluster').mean()
     print('\nCluster-wise mean of features:')
     print(df_grouped)
+
+    # Save the clustered data to a new CSV file
+    # Create results directory if it doesn't exist
+    import os
+    if not os.path.exists('results'):
+        os.makedirs('results')
+    df_grouped.to_csv('results/clustered_data.csv', index=False)
+    print('\nClustered data saved to results/clustered_data.csv')
     
