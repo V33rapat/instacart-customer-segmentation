@@ -3,5 +3,5 @@ env/
 __pycache__/
 *.csv
 *.zip
-
+reports/data_profile/
 
