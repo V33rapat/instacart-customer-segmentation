@@ -4,5 +4,4 @@ __pycache__/
 *.csv
 *.zip
 reports/data_profile/
-requirements.txt
 
